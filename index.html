@@ -118,28 +118,25 @@ section{padding-block:72px}
 .gh{display:flex;align-items:center;gap:14px;margin-bottom:16px}
 .gh h3{font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
 .gh::after{content:"";flex:1;height:1px;background:var(--line)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.grid.two{grid-template-columns:repeat(2,1fr)}
-.grid.five{grid-template-columns:repeat(5,1fr)}
-.grid.three{grid-template-columns:repeat(3,1fr)}
-@media (max-width:1000px){.grid,.grid.five{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:720px){.grid,.grid.five{grid-template-columns:repeat(2,1fr);gap:12px}}
-.grid.two .bike img{aspect-ratio:16/10}
-.bike{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#FFFFFF;transition:border-color .15s,box-shadow .2s}
-.bike:hover{border-color:#d4d4d4;box-shadow:0 14px 30px -22px rgba(0,0,0,.4)}
-.bike img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;transition:transform .3s}
-.bike:hover img{transform:scale(1.03)}
-.bike .info{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;padding:12px 14px 14px;border-top:1px solid var(--line)}
-.bike h4{margin:0;font-family:var(--f-brand);font-weight:800;font-size:15.5px;line-height:1.2}
-.bike .cc{font-size:13px;color:var(--muted);margin-top:2px}
-.price{flex:none;text-align:right;font-family:var(--f-brand);line-height:1}
-.price b{display:block;font-weight:900;font-style:italic;font-size:24px;color:var(--red);font-variant-numeric:tabular-nums}
+/* fleet: same card size in every group, columns follow screen width */
+.grid,.grid.two,.grid.three,.grid.five{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (min-width:761px) and (max-width:1060px){.grid,.grid.two,.grid.three,.grid.five{grid-template-columns:repeat(2,1fr);gap:16px}}
+.bike{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#FFFFFF;transition:border-color .15s,box-shadow .2s,transform .2s}
+.bike:hover{border-color:#d4d4d4;box-shadow:0 16px 32px -22px rgba(0,0,0,.45);transform:translateY(-2px)}
+.bike img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;padding:14px 18px 6px;transition:transform .3s}
+.bike:hover img{transform:scale(1.04)}
+.bike .info{display:flex;flex-direction:column;gap:3px;flex:1;padding:16px 20px 18px;border-top:1px solid var(--line)}
+.bike h4{margin:0;font-family:var(--f-brand);font-weight:800;font-size:19px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bike .info>div{min-width:0}
+.bike .cc{font-size:14px;color:var(--muted);margin:0}
+.price{display:flex;align-items:baseline;gap:6px;margin-top:auto;padding-top:10px;font-family:var(--f-brand);line-height:1}
+.price b{font-weight:900;font-style:italic;font-size:30px;color:var(--red);font-variant-numeric:tabular-nums}
 .price b.ask{font-size:20px}
 .price small{font-weight:700;font-size:10.5px;letter-spacing:.08em;color:var(--muted)}
 .dots{display:flex;gap:5px;margin-top:6px}
 .dots i{width:11px;height:11px;border-radius:50%;border:1px solid #cfcfcf}
-.flag{position:absolute;top:10px;left:10px;background:var(--ink);color:#fff;font-family:var(--f-brand);font-weight:800;font-style:italic;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:4px}
-@media (max-width:420px){.bike .info{flex-direction:column;align-items:flex-start}.price{text-align:left}.price b{font-size:21px}}
+.flag{position:absolute;z-index:2;top:10px;left:10px;background:var(--ink);color:#fff;font-family:var(--f-brand);font-weight:800;font-style:italic;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:4px}
+
 .pnote{margin-top:22px;font-size:14px;color:var(--muted)}
 
 /* good to know */
@@ -194,6 +191,20 @@ footer .logo b{color:#fff}
 .wa{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:14;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#25D366;box-shadow:0 8px 22px -6px rgba(0,0,0,.45)}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;font-size:14px;z-index:21}
 
+
+/* featured cards: span two columns, image left, bigger price */
+.bike.feat{grid-column:span 2;display:grid;grid-template-columns:1.25fr 1fr;border:2px solid var(--ink)}
+.bike.feat img{height:100%;aspect-ratio:auto;max-height:340px;padding:18px}
+.bike.feat .info{border-top:0;border-left:1px solid var(--line);justify-content:center;padding:28px;gap:6px}
+.bike.feat .kicker{font-family:var(--f-brand);font-weight:800;font-style:italic;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.bike.feat h4{font-size:28px;white-space:normal}
+.bike.feat .cc{font-size:15px}
+.bike.feat .blurb{font-size:15px;color:var(--muted);line-height:1.55;margin:8px 0 0}
+.bike.feat .price{margin-top:14px}
+.bike.feat .price b{font-size:44px}
+.bike.feat .price small{font-size:12px}
+.bike.feat .flag{font-size:12px;padding:5px 11px;top:14px;left:14px}
+@media (min-width:761px) and (max-width:1060px){.bike.feat{grid-template-columns:1.1fr 1fr}.bike.feat h4{font-size:24px}.bike.feat .price b{font-size:38px}.bike.feat .info{padding:22px}}
 /* ===== Mobile ===== */
 [hidden]{display:none!important}
 .menu-btn{display:none;width:44px;height:44px;border:0;border-radius:10px;background:rgba(0,0,0,.35);color:#fff;cursor:pointer;place-items:center;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -239,13 +250,22 @@ header.solid .menu-btn{background:var(--ink)}
   .gh h3{font-size:13px}
   /* bikes become a clean price list */
   .grid,.grid.two,.grid.three,.grid.five{grid-template-columns:1fr;gap:10px}
-  .bike{display:grid;grid-template-columns:44% 1fr;align-items:stretch}
-  .bike img,.grid.two .bike img{aspect-ratio:4/3;height:100%;object-fit:contain;padding:4px}
-  .bike .info{flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;border-top:0;border-left:1px solid var(--line);padding:12px 14px}
-  .bike h4{font-size:16px}
-  .price{text-align:left}
-  .price b{display:inline;font-size:26px}
-  .price small{margin-left:4px}
+  .bike{display:grid;grid-template-columns:42% 1fr;align-items:stretch;border-radius:12px}
+  .bike:hover{transform:none}
+  .bike img{height:100%;aspect-ratio:4/3;padding:6px}
+  .bike .info{justify-content:center;gap:2px;border-top:0;border-left:1px solid var(--line);padding:12px 14px;min-width:0}
+  .bike h4{font-size:16px;white-space:normal}
+  .bike h4{font-size:17px}
+  .price{margin-top:0;padding-top:8px}
+  .price b{font-size:26px}
+  .bike.feat{grid-column:auto;display:block;border-width:2px}
+  .bike.feat img{width:100%;height:auto;max-height:none;aspect-ratio:4/3;padding:12px 16px 0}
+  .bike.feat .info{border-left:0;border-top:1px solid var(--line);padding:16px 18px 18px}
+  .bike.feat h4{font-size:24px}
+  .bike.feat .blurb{font-size:14px;margin-top:4px}
+  .bike.feat .price{margin-top:10px}
+  .bike.feat .price b{font-size:36px}
+
   .flag{top:8px;left:8px;font-size:9.5px;padding:3px 7px}
   .bike:hover img{transform:none}
   /* good to know: compact 2-col tiles */
@@ -331,7 +351,7 @@ header.solid .menu-btn{background:var(--ink)}
       <div class="group">
         <div class="gh"><h3>Maxi scooters</h3></div>
         <div class="grid five">
-          <article class="bike rv"><span class="flag">Top model</span><img decoding="async" src="xmax.jpg" alt="Yamaha XMAX" loading="lazy" width="800" height="600"><div class="info"><div><h4>Yamaha XMAX</h4><p class="cc">300cc</p></div><p class="price"><b>฿1,000</b><small>/ DAY</small></p></div></article>
+          <article class="bike rv feat"><span class="flag">Top model</span><img decoding="async" src="xmax.jpg" alt="Yamaha XMAX" loading="lazy" width="800" height="600"><div class="info"><div><p class="kicker">Our flagship</p><h4>Yamaha XMAX</h4><p class="cc">300cc · maxi scooter</p><p class="blurb">Our most powerful scooter. Comfortable for two riders and made for longer rides out of the city.</p></div><p class="price"><b>฿1,000</b><small>/ DAY</small></p></div></article>
           <article class="bike rv"><img decoding="async" src="nmax.jpg" alt="Yamaha NMAX" loading="lazy" width="800" height="600"><div class="info"><div><h4>Yamaha NMAX</h4><p class="cc">155cc</p></div><p class="price"><b>฿500</b><small>/ DAY</small></p></div></article>
           <article class="bike rv"><img decoding="async" src="pcx.jpg" alt="Honda PCX 160" loading="lazy" width="800" height="600"><div class="info"><div><h4>Honda PCX</h4><p class="cc">160cc</p></div><p class="price"><b>฿500</b><small>/ DAY</small></p></div></article>
           <article class="bike rv"><img decoding="async" src="adv.jpg" alt="Honda ADV 160" loading="lazy" width="800" height="600"><div class="info"><div><h4>Honda ADV</h4><p class="cc">160cc · adventure</p></div><p class="price"><b>฿500</b><small>/ DAY</small></p></div></article>
@@ -351,11 +371,11 @@ header.solid .menu-btn{background:var(--ink)}
       <div class="group">
         <div class="gh"><h3>Classic &amp; city scooters</h3></div>
         <div class="grid five">
+          <article class="bike rv feat"><span class="flag">Best price</span><img decoding="async" src="fino-gt.jpg" alt="Yamaha Fino GT" loading="lazy" width="800" height="600"><div class="info"><div><p class="kicker">Lowest daily price</p><h4>Yamaha Fino GT</h4><p class="cc">125cc · city scooter</p><p class="blurb">Light and easy to ride. The most affordable way to get around Chiang Mai.</p></div><p class="price"><b>฿250</b><small>/ DAY</small></p></div></article>
           <article class="bike rv"><img decoding="async" src="fazzio.jpg" alt="Yamaha Fazzio" loading="lazy" width="800" height="600"><div class="info"><div><h4>Yamaha Fazzio</h4><p class="cc">125cc</p></div><p class="price"><b>฿350</b><small>/ DAY</small></p></div></article>
-          <article class="bike rv"><img decoding="async" src="filano.jpg" alt="Yamaha Grand Filano Hybrid" loading="lazy" width="800" height="600"><div class="info"><div><h4>Yamaha Grand Filano Hybrid</h4><p class="cc">125cc</p></div><p class="price"><b>฿350</b><small>/ DAY</small></p></div></article>
+          <article class="bike rv"><img decoding="async" src="filano.jpg" alt="Yamaha Grand Filano Hybrid" loading="lazy" width="800" height="600"><div class="info"><div><h4 title="Yamaha Grand Filano Hybrid">Yamaha Grand Filano</h4><p class="cc">125cc · hybrid</p></div><p class="price"><b>฿350</b><small>/ DAY</small></p></div></article>
           <article class="bike rv"><img decoding="async" src="scoopy.jpg" alt="Honda Scoopy" loading="lazy" width="800" height="600"><div class="info"><div><h4>Honda Scoopy</h4><p class="cc">125cc</p></div><p class="price"><b>฿250</b><small>/ DAY</small></p></div></article>
           <article class="bike rv"><img decoding="async" src="giorno.jpg" alt="Honda Giorno" loading="lazy" width="800" height="600"><div class="info"><div><h4>Honda Giorno</h4><p class="cc">125cc</p></div><p class="price"><b>฿400</b><small>/ DAY</small></p></div></article>
-          <article class="bike rv"><span class="flag">Best price</span><img decoding="async" src="fino-gt.jpg" alt="Yamaha Fino GT" loading="lazy" width="800" height="600"><div class="info"><div><h4>Yamaha Fino GT</h4><p class="cc">125cc</p></div><p class="price"><b>฿250</b><small>/ DAY</small></p></div></article>
         </div>
       </div>
       <p class="pnote">Prices may change by season. Call or message us to check what is available today.</p>
